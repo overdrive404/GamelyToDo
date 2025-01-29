@@ -25136,3 +25136,19 @@ dl li {
   height: 89vh;
 }
 /*# sourceMappingURL=maps/style.css.map */
+
+
+.hidden {
+    display: none;
+}
+/* Стили для адаптации описания */
+.break-word {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 200px; /* Ограничение ширины ячейки для описания */
+    white-space: normal; /* Позволяет тексту переноситься */
+}
+/* Ограничение высоты таблицы для добавления полосы прокрутки */
+.table-responsive {
+    max-height: 500px; /* Максимальная высота таблицы, можно изменить */
+    overflow-y: auto; /* Добавить вертикальную полосу прокрутки */

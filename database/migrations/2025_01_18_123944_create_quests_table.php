@@ -18,11 +18,11 @@ return new class extends Migration
 
             // Внешний ключ для skill_id
             $table->unsignedBigInteger('skill_id')->nullable()->comment('ID навыка, связанного с квестом');
-            $table->foreign('skill_id')->references('id')->on('skills')->onDelete('set null'); // Установите значение null при удалении навыка
+            $table->foreign('skill_id')->references('id')->on('skills')->onDelete('set null');
 
             // Внешний ключ для character_id
             $table->unsignedBigInteger('character_id')->comment('ID игрового героя, связанного с квестом');
-            $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade'); // Удалить квесты при удалении героя
+            $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade');
 
             $table->enum('difficulty', ['easy', 'normal', 'hard', 'extreme'])->default('easy')->comment('Сложность квеста');
             $table->enum('status', ['active', 'finished', 'cancelled'])->default('active')->comment('Статус квеста');
@@ -30,7 +30,7 @@ return new class extends Migration
 
             $table->timestamps();
 
-            // Добавление индексов для внешних ключей
+
             $table->index('skill_id');
             $table->index('character_id');
         });

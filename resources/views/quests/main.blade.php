@@ -1,116 +1,130 @@
 @extends('layouts.layout')
+@section('title')
+    | Квесты
+@endsection
 @section('content')
 
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title"> КККВВВЕЕЕСССТЫЫЫ </h4>
-            <p class="card-description"> Add class <code>.table-striped</code>
-            </p>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th> User </th>
-                        <th> First name </th>
-                        <th> Progress </th>
-                        <th> Amount </th>
-                        <th> Deadline </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="py-1">
-                            <img src="../../assets/images/faces-clipart/pic-1.png" alt="image">
-                        </td>
-                        <td> Herman Beck </td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </td>
-                        <td> $ 77.99 </td>
-                        <td> May 15, 2015 </td>
-                    </tr>
-                    <tr>
-                        <td class="py-1">
-                            <img src="../../assets/images/faces-clipart/pic-2.png" alt="image">
-                        </td>
-                        <td> Messsy Adam </td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </td>
-                        <td> $245.30 </td>
-                        <td> July 1, 2015 </td>
-                    </tr>
-                    <tr>
-                        <td class="py-1">
-                            <img src="../../assets/images/faces-clipart/pic-3.png" alt="image">
-                        </td>
-                        <td> John Richards </td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </td>
-                        <td> $138.00 </td>
-                        <td> Apr 12, 2015 </td>
-                    </tr>
-                    <tr>
-                        <td class="py-1">
-                            <img src="../../assets/images/faces-clipart/pic-4.png" alt="image">
-                        </td>
-                        <td> Peter Meggik </td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </td>
-                        <td> $ 77.99 </td>
-                        <td> May 15, 2015 </td>
-                    </tr>
-                    <tr>
-                        <td class="py-1">
-                            <img src="../../assets/images/faces-clipart/pic-1.png" alt="image">
-                        </td>
-                        <td> Edward </td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </td>
-                        <td> $ 160.25 </td>
-                        <td> May 03, 2015 </td>
-                    </tr>
-                    <tr>
-                        <td class="py-1">
-                            <img src="../../assets/images/faces-clipart/pic-2.png" alt="image">
-                        </td>
-                        <td> John Doe </td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </td>
-                        <td> $ 123.21 </td>
-                        <td> April 05, 2015 </td>
-                    </tr>
-                    <tr>
-                        <td class="py-1">
-                            <img src="../../assets/images/faces-clipart/pic-3.png" alt="image">
-                        </td>
-                        <td> Henry Tom </td>
-                        <td>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </td>
-                        <td> $ 150.00 </td>
-                        <td> June 16, 2015 </td>
-                    </tr>
-                    </tbody>
-                </table>
+    <form action="{{route('user.quest.create')}}" method="GET" style="display:inline;" class="p-4">
+            <button type="submit" class="btn btn-primary">Создать Квест</button>
+    </form>
+    <div class="row ">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Список квестов</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th> Описание </th>
+                                <th> Сложность </th>
+                                <th> Характеристика </th>
+                                <th> Навык </th>
+                                <th> Опыт навыка</th>
+                                <th> Опыт </th>
+                                <th> Золото </th>
+                                <th colspan="3"> Действия </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($quests as $quest)
+                                <tr>
+                                    <td class="break-word">{{ $quest->description }}</td> <!-- Используем класс break-word -->
+                                    <td>
+                                        @switch($quest->difficulty)
+                                            @case('easy') Легкий @break
+                                            @case('normal') Нормальный @break
+                                            @case('hard') Сложный @break
+                                            @case('extreme') Экстремальный @break
+                                            @default Неизвестно
+                                        @endswitch
+                                    </td>
+                                    <td>
+                                        @switch($quest->characteristic)
+                                            @case('strength') Сила @break
+                                            @case('intelligence') Интеллект @break
+                                            @case('creativity') Творчество @break
+                                            @case('health') Здоровье @break
+                                            @default Неизвестно
+                                        @endswitch
+                                    </td>
+                                    <td>{{ $quest->skill ? $quest->skill->title : 'Нет навыка' }}</td>
+                                    <td>
+                                        @switch($quest->difficulty)
+                                            @case('easy')
+                                                5
+                                                @break
+                                            @case('normal')
+                                                10
+                                                @break
+                                            @case('hard')
+                                                15
+                                                @break
+                                            @case('extreme')
+                                                20
+                                                @break
+                                        @endswitch
+                                    </td>
+                                    <td>
+                                        @switch($quest->difficulty)
+                                            @case('easy')
+                                                5
+                                                @break
+                                            @case('normal')
+                                                10
+                                                @break
+                                            @case('hard')
+                                                15
+                                                @break
+                                            @case('extreme')
+                                                20
+                                                @break
+                                        @endswitch
+                                    </td>
+                                    <td>
+                                        @switch($quest->difficulty)
+                                            @case('easy')
+                                                5
+                                                @break
+                                            @case('normal')
+                                                10
+                                                @break
+                                            @case('hard')
+                                                15
+                                                @break
+                                            @case('extreme')
+                                                20
+                                                @break
+                                        @endswitch
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('user.quest.complete', $quest->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            <button type="submit" class="bg-success">
+                                                <i class="fa-solid fa-check"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                    <td>
+
+                                        <a href="{{route('user.quest.edit', $quest->id)}}"> <i class="fas fa-pen"></i> </a>
+                                    </td>
+                                    <td>
+
+                                        <form action="{{ route('user.quest.destroy', $quest->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="border-0 bg-transparent">
+                                                <i class="fas fa-trash text-danger"> </i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

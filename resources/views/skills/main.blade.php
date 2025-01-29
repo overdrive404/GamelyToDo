@@ -1,4 +1,7 @@
 @extends('layouts.layout')
+@section('title')
+    | Навыки
+@endsection
 @section('content')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <div class="card">
@@ -19,34 +22,6 @@
                     </div>
                 </form>
             </div>
-
-
-
-            <script>
-                // Получаем элементы
-                const addButton = document.getElementById('add-skill-btn');
-                const inputContainer = document.getElementById('skill-input-container');
-                const createSkillButton = document.getElementById('create-skill-btn');
-
-                // Событие для показа поля ввода
-                addButton.addEventListener('click', () => {
-                    inputContainer.classList.toggle('hidden');
-                });
-
-                // Событие для обработки создания навыка
-                createSkillButton.addEventListener('click', () => {
-                    const skillName = document.getElementById('skill-name').value;
-                    if (skillName) {
-                        alert(`Навык "${skillName}" успешно создан!`);
-                        // Здесь вы можете добавить код для отправки данных на сервер
-                        document.getElementById('skill-name').value = ''; // Очистка поля
-                        inputContainer.classList.add('hidden'); // Скрыть поле ввода после создания
-                    } else {
-                        alert('Пожалуйста, введите название навыка.');
-                    }
-                });
-            </script>
-
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
