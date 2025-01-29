@@ -228,6 +228,7 @@
 <!-- Custom js for this page -->
 <script src="{{asset('assets/js/proBanner.js')}}"></script>
 <script src="{{asset('assets/js/hiddenbar.js')}}"></script>
+<script src="{{asset('assets/js/avatar-choise.js')}}"></script>
 <script src="{{asset('assets/js/dashboard.js')}}"></script>
 <!-- End custom js for this page -->
 </body>

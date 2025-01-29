@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\EloquentUserProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +22,12 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Auth::provider('eloquent', function ($app, array $config) {
+            return new EloquentUserProvider($app['hash'], $config['model']);
+        });
+
+        Auth::viaRequest('custom-token', function ($request) {
+            return Auth::user()->load('character');
+        });
     }
 }

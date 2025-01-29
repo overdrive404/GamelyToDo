@@ -4,43 +4,48 @@ namespace App\Http\Controllers\User\Award;
 
 use App\Http\Requests\User\Award\StoreRequest;
 use App\Models\Award;
+use Illuminate\Support\Facades\DB;
 
 class AwardController
 {
-    public function index(){
-        $character = auth()->user()->getCharacter;
-        $awards = $character->getAwards;
-        return view('awards.main', compact('awards', 'character'));
+    protected $character;
+
+    public function __construct()
+    {
+        $this->character = auth()->user()->getCharacter;
     }
 
+    public function index()
+    {
+        $awards = $this->character->getAwards;
+        return view('awards.main', [
+            'awards' => $awards,
+            'character' => $this->character
+        ]);
+    }
 
     public function store(StoreRequest $request)
     {
-        $character = auth()->user()->getCharacter;
         $data = $request->validated();
-        $data['character_id'] = $character->id;
+        $data['character_id'] = $this->character->id;
         Award::create($data);
         return redirect()->route('user.award.index');
     }
 
-    public function destroy($id)
+    public function destroy(Award $award) // Route Model Binding
     {
-        $award = Award::findOrFail($id);
         $award->delete();
         return redirect()->route('user.award.index');
     }
 
     public function buy(Award $award)
     {
-        $character = auth()->user()->getCharacter;
+        DB::transaction(function () use ($award) {
+            if ($this->character->decreaseGold($award->price)) {
+                $award->delete();
+            }
+        });
 
-        $paid = $character->decreaseGold($award->price);
-        if ($paid) {
-            $award->delete();
-        }
         return redirect()->route('user.award.index');
     }
-
-
-
 }

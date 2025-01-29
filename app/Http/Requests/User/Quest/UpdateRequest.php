@@ -25,7 +25,7 @@ class UpdateRequest extends FormRequest
             'description' => 'required|string|max:255',
             'difficulty' => 'required|in:easy,normal,hard,extreme',
             'skill_id' => 'nullable|exists:skills,id',
-            'characteristics' => 'string|max:255',
+            'characteristic' => 'string|max:255',
         ];
     }
 }

@@ -15,7 +15,6 @@ class SkillController
         return view('skills.main', compact('skills'));
     }
 
-
     public function store(StoreRequest $request)
     {
         $character = auth()->user()->getCharacter;
@@ -24,14 +23,10 @@ class SkillController
         Skill::create($data);
         return redirect()->route('user.skill.index');
     }
-
     public function destroy($id)
     {
         $skill = Skill::findOrFail($id);
         $skill->delete();
         return redirect()->route('user.skill.index');
     }
-
-
-
 }
