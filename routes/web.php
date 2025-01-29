@@ -20,6 +20,15 @@ Route::get('/', function () {
 
 
 Route::group(['namespace' => 'App\Http\Controllers\User', 'prefix'=>'user', 'middleware' => ['auth']], function () {
+
+
+    Route::group(['namespace' => 'Settings'], function () {
+        Route::get('/settings', 'SettingsController@index')->name('user.settings');
+        Route::post('/avatar/update', 'SettingsController@updateAvatar')->name('user.settings.updateAvatar');
+        Route::post('/name/update', 'SettingsController@updateName')->name('user.settings.updateName');
+    });
+
+
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/main', 'HomeController@index')->name('user.main.index');
     });
@@ -27,6 +36,7 @@ Route::group(['namespace' => 'App\Http\Controllers\User', 'prefix'=>'user', 'mid
     Route::group(['namespace' => 'Skill', 'prefix'=>'skills'], function () {
         Route::get('/', 'SkillController@index')->name('user.skill.index');
         Route::post('/', 'SkillController@store')->name('user.skill.store');
+        Route::delete('/{skill}', 'SkillController@destroy')->name('user.skill.destroy');
     });
 
     Route::group(['namespace' => 'Award', 'prefix'=>'awards'], function () {

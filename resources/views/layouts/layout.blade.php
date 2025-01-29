@@ -5,6 +5,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>GamelyToDo @yield('title') </title>
+    <style>
+        .avatar-container {
+            display: flex;
+            flex-wrap: wrap; /* Позволяет обернуть аватарки на следующую строку */
+            justify-content: center; /* Центрирование элементов */
+        }
+        .avatar {
+            width: 100px; /* Ширина миниатюр */
+            height: 100px; /* Высота миниатюр */
+            margin: 10px;
+            cursor: pointer;
+            border: 2px solid transparent; /* Обводка */
+            display: inline-block;
+            background-size: cover; /* Масштабирование фонового изображения */
+            transition: border 0.3s, transform 0.3s; /* Плавные изменения */
+        }
+        .avatar.selected {
+            border-color: blueviolet; /* Цвет обводки для выбранного */
+            background-color: mediumpurple;
+            transform: scale(1.05);} /* Увеличение для выделения */
+    </style>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
@@ -40,7 +61,8 @@
                 <div class="profile-desc">
                     <div class="profile-pic">
                         <div class="count-indicator">
-                            <img class="img-xs" src="{{asset('assets/images/faces/avatar1.svg')}}" alt="">
+
+                            <img class="img-xs" src="{{ asset('assets/images/faces/' . auth()->user()->avatar)  }}" alt="">
                             <span class="count bg-success"></span>
                         </div>
                         <div class="profile-name">
@@ -87,6 +109,14 @@
                     <span class="menu-title">Награды</span>
                 </a>
             </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="#">
+              <span class="menu-icon">
+                 <i class="fa-solid fa-book"></i>
+              </span>
+                    <span class="menu-title">Дневничок</span>
+                </a>
+            </li>
         </ul>
     </nav>
     <!-- partial -->
@@ -104,43 +134,49 @@
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item dropdown d-none d-lg-block">
                         <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" type="button"  aria-expanded="false" href="{{route('user.quest.create')}}">+ Создать новый квест</a>
-
                     </li>
+
 
                     <li class="nav-item dropdown">
                         <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                             <div class="navbar-profile">
-                                <img class="img-xs" src="../../../assets/images/faces/avatar1.svg" alt="">
+                                <img class="img-xs" src="{{asset('assets/images/faces/' . auth()->user()->avatar)}}" alt="">
                                 <p class="mb-0 d-none d-sm-block navbar-profile-name">{{auth()->user()->name}}</p>
                                 <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                             <h6 class="p-3 mb-0">Аккаунт</h6>
-                            <div class="dropdown-divider"></div>
 
+                            <div class="dropdown-divider"></div>
+                            <a href="{{route('user.settings')}}" class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-dark rounded-circle">
+                                        <i class="mdi mdi-cog text-success"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <p class="preview-subject mb-1">Настройки</p>
+                                </div>
+                            </a>
+
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 <div class="preview-thumbnail">
                                     <div class="preview-icon bg-dark rounded-circle">
                                         <i class="mdi mdi-logout text-danger"></i>
-
                                     </div>
                                 </div>
                                 <div class="preview-item-content">
                                     <p class="preview-subject mb-1">Выйти</p>
                                 </div>
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
-
                             <div class="dropdown-divider"></div>
-
-
-
                         </div>
                     </li>
                 </ul>

@@ -76,7 +76,7 @@
                             <td>
                                 <form action="{{route('user.boss.damage', $boss->id)}}" method="POST" style="display:inline;">
                                     @csrf
-                                    <button onclick="markHabit()" type="submit" class="bg-danger">
+                                    <button onclick="markHabit()" type="submit" class="btn btn-inverse-danger btn-fw">
                                         Совершил вредную привычку
                                     </button>
                                 </form>

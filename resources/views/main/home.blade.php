@@ -112,6 +112,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="preview-list">
+                                            <a href="{{route('user.quest.index')}}" class="text-decoration-none text-white">
                                             <div class="preview-item border-bottom">
                                                 <div class="preview-thumbnail">
                                                     <div class="preview-icon bg-warning">
@@ -120,13 +121,15 @@
                                                 </div>
                                                 <div class="preview-item-content d-sm-flex flex-grow">
                                                     <div class="flex-grow">
-                                                        <a href="{{route('user.quest.index')}}" class="text-decoration-none text-white">
+
                                                             <h6 class="preview-subject">Вперёд за приключениями!</h6>
                                                             <p class="text-muted mb-0">Создай свой квест</p>
-                                                        </a>
+
                                                     </div>
                                                 </div>
                                             </div>
+                                            </a>
+                                            <a href="{{route('user.skill.index')}}" class="text-decoration-none text-white">
                                             <div class="preview-item border-bottom">
                                                 <div class="preview-thumbnail">
                                                     <div class="preview-icon bg-success">
@@ -135,14 +138,16 @@
                                                 </div>
                                                 <div class="preview-item-content d-sm-flex flex-grow">
                                                     <div class="flex-grow">
-                                                        <a href="{{route('user.skill.index')}}" class="text-decoration-none text-white">
+
                                                         <h6 class="preview-subject">Прокачай себя</h6>
                                                         <p class="text-muted mb-0">Добавь новые навыки</p>
-                                                        </a>
+
                                                     </div>
 
                                                 </div>
                                             </div>
+                                            </a>
+                                            <a href="{{route('user.boss.index')}}" class="text-decoration-none text-white">
                                             <div class="preview-item border-bottom">
                                                 <div class="preview-thumbnail">
                                                     <div class="preview-icon bg-danger">
@@ -151,14 +156,16 @@
                                                 </div>
                                                 <div class="preview-item-content d-sm-flex flex-grow">
                                                     <div class="flex-grow">
-                                                        <a href="{{route('user.boss.index')}}" class="text-decoration-none text-white">
+
                                                         <h6 class="preview-subject">БОССЫ</h6>
                                                         <p class="text-muted mb-0">Одолей свои вредные привычки!</p>
-                                                        </a>
+
                                                     </div>
 
                                                 </div>
                                             </div>
+                                            </a>
+                                            <a href="{{route('user.award.index')}}" class="text-decoration-none text-white">
                                             <div class="preview-item border-bottom">
                                                 <div class="preview-thumbnail">
                                                     <div class="preview-icon bg-info">
@@ -167,28 +174,32 @@
                                                 </div>
                                                 <div class="preview-item-content d-sm-flex flex-grow">
                                                     <div class="flex-grow">
-                                                        <a href="{{route('user.award.index')}}" class="text-decoration-none text-white">
+
                                                         <h6 class="preview-subject"> Награды </h6>
                                                         <p class="text-muted mb-0">Побалуй себя</p>
-                                                        </a>
-                                                    </div>
 
+                                                    </div>
                                                 </div>
                                             </div>
+                                            </a>
+                                            <a href="#" class="text-decoration-none text-white">
                                             <div class="preview-item">
                                                 <div class="preview-thumbnail">
                                                     <div class="preview-icon bg-primary">
-                                                        <i class="mdi mdi-chart-pie"></i>
+                                                        <i class="fa-solid fa-book"></i>
                                                     </div>
                                                 </div>
                                                 <div class="preview-item-content d-sm-flex flex-grow">
                                                     <div class="flex-grow">
-                                                        <h6 class="preview-subject">В разработке</h6>
-                                                        <p class="text-muted mb-0">Этот раздел ещё не открыт</p>
+
+
+                                                        <h6 class="preview-subject">Дневничок</h6>
+                                                        <p class="text-muted mb-0">Записывать разные мысли...</p>
+
                                                     </div>
 
                                                 </div>
-                                            </div>
+                                            </div> </a>
                                         </div>
                                     </div>
                                 </div>

@@ -30,6 +30,7 @@
                         <th> Навык </th>
                         <th> Прогресс </th>
                         <th> Уровень </th>
+                        <th> </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -42,6 +43,16 @@
                                 </div>
                             </td>
                             <td> {{$skill->level}} </td>
+                            <td>
+
+                                <form action="{{ route('user.skill.destroy', $skill->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="border-0 bg-transparent">
+                                        <i class="fas fa-trash text-danger"> </i>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
 

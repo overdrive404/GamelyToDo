@@ -100,8 +100,8 @@
                                     <td>
                                         <form action="{{ route('user.quest.complete', $quest->id) }}" method="POST" style="display:inline;">
                                             @csrf
-                                            <button type="submit" class="bg-success">
-                                                <i class="fa-solid fa-check"></i>
+                                            <button type="submit" class="btn btn-success btn-fw">
+                                                Выполнить <i class="fa-solid fa-check"></i>
                                             </button>
                                         </form>
                                     </td>

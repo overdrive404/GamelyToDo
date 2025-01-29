@@ -42,7 +42,7 @@
                             <td>
                                 <form action="{{ route('user.award.buy', $award->id) }}" method="POST" style="display:inline;">
                                     @csrf
-                                    <button type="submit" class="bg-success">
+                                    <button type="submit" class="btn btn-info btn-fw">
                                         Купить
                                     </button>
                                 </form>
