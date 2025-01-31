@@ -8,6 +8,7 @@ use App\Http\Controllers\User\Award\AwardController;
 use App\Http\Controllers\User\Boss\BossController;
 use App\Http\Controllers\User\Quest\QuestController;
 use App\Http\Controllers\User\Post\PostController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,4 +84,14 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth']], function () {
 });
 
 Auth::routes(['verify' => true, 'reset' => true]);
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 

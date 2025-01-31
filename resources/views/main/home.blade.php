@@ -107,7 +107,6 @@
                             <div class="card-body">
                                 <div class="d-flex flex-row justify-content-between">
                                     <h4 class="card-title mb-1">Начни сейчас!</h4>
-
                                 </div>
                                 <div class="row">
                                     <div class="col-12">

@@ -25,6 +25,29 @@
             border-color: blueviolet; /* Цвет обводки для выбранного */
             background-color: mediumpurple;
             transform: scale(1.05);} /* Увеличение для выделения */
+        #search-bar {
+            position: relative; /* Позволяет дочерним элементам использовать absolute positioning */
+        }
+
+        .form-control {
+            width: 100%;
+        }
+
+        .dropdown-menu {
+            position: absolute; /* Позиционируем относительно родительского контейнера */
+            left: 0;
+            right: 0; /* Чтобы меню расширялось на всю ширину родителя */
+            top: 100%; /* Сдвигаем меню под полем ввода */
+            z-index: 1000; /* Убедитесь, что меню находится сверху */
+            background-color: white; /* Убедитесь, что фон белый */
+            border: 1px solid #ddd; /* Добавьте границу, чтобы отделить */
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid #eee; /* Линия между элементами списка */
+            cursor: pointer; /* Указатель на элементы списка */
+        }
+
     </style>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- plugins:css -->
@@ -46,7 +69,9 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    @livewireStyles
 </head>
+
 <body>
 <div class="container-scroller">
 
@@ -56,6 +81,7 @@
             <a class="sidebar-brand brand-logo" href="{{route('user.main.index')}}"><img src="{{asset('assets/images/logo.svg')}}" alt="logo" /></a>
             <a class="sidebar-brand brand-logo-mini" href="{{route('user.main.index')}}"><img src="{{asset('assets/images/logo-mini.svg')}}" alt="logo" /></a>
         </div>
+
         <ul class="nav">
             <li class="nav-item profile">
                 <div class="profile-desc">
@@ -131,6 +157,10 @@
                     <span class="mdi mdi-menu"></span>
                 </button>
 
+                <div class="container">
+                    @livewire('search') <!-- Это ваш Livewire компонент с формой поиска -->
+                </div>
+
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item dropdown d-none d-lg-block">
                         <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" type="button"  aria-expanded="false" href="{{route('user.quest.create')}}">+ Создать новый квест</a>
@@ -180,10 +210,13 @@
                         </div>
                     </li>
                 </ul>
+
+
                 <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
                     <span class="mdi mdi-format-line-spacing"></span>
                 </button>
             </div>
+
         </nav>
         <!-- partial -->
         <div class="main-panel">
@@ -231,5 +264,6 @@
 <script src="{{asset('assets/js/avatar-choise.js')}}"></script>
 <script src="{{asset('assets/js/dashboard.js')}}"></script>
 <!-- End custom js for this page -->
+@livewireScripts
 </body>
 </html>

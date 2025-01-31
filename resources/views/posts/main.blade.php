@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="container mt-3">
+
         <h2 class="my-4 text-center">Мои записи</h2>
         <form action="{{route('user.post.create')}}" method="GET" style="display:inline;" class="p-4">
             <button type="submit" class="btn btn-primary">Создать пост</button>
