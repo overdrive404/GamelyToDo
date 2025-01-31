@@ -7,6 +7,7 @@ use App\Http\Controllers\User\Skill\SkillController;
 use App\Http\Controllers\User\Award\AwardController;
 use App\Http\Controllers\User\Boss\BossController;
 use App\Http\Controllers\User\Quest\QuestController;
+use App\Http\Controllers\User\Post\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,17 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth']], function () {
         Route::post('/', 'store')->name('user.quest.store');
         Route::post('/{quest_id}', 'complete')->name('user.quest.complete');
         Route::delete('/{id}', 'destroy')->name('user.quest.destroy');
+    });
+
+    Route::controller(PostController::class)->prefix('posts')->group(function () {
+        Route::get('/', 'index')->name('user.post.index');
+        Route::get('/create', 'create')->name('user.post.create');
+        Route::get('/{post}', 'show')->name('user.post.show');
+        Route::post('/', 'store')->name('user.post.store');
+        Route::get('/{post}/edit', 'edit')->name('user.post.edit');
+        Route::put('/{post}', 'update')->name('user.post.update');
+        Route::delete('/{post}', 'destroy')->name('user.post.destroy');
+
     });
 
 });

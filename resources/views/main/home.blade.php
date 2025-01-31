@@ -182,7 +182,7 @@
                                                 </div>
                                             </div>
                                             </a>
-                                            <a href="#" class="text-decoration-none text-white">
+                                            <a href="{{route('user.post.index')}}" class="text-decoration-none text-white">
                                             <div class="preview-item">
                                                 <div class="preview-thumbnail">
                                                     <div class="preview-icon bg-primary">

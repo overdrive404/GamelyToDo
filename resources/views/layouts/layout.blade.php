@@ -110,7 +110,7 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('user.post.index')}}">
               <span class="menu-icon">
                  <i class="fa-solid fa-book"></i>
               </span>
