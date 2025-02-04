@@ -7,6 +7,8 @@ use App\Http\Controllers\User\Skill\SkillController;
 use App\Http\Controllers\User\Award\AwardController;
 use App\Http\Controllers\User\Boss\BossController;
 use App\Http\Controllers\User\Quest\QuestController;
+use App\Http\Controllers\User\Post\PostController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,7 +70,28 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth']], function () {
         Route::delete('/{id}', 'destroy')->name('user.quest.destroy');
     });
 
+    Route::controller(PostController::class)->prefix('posts')->group(function () {
+        Route::get('/', 'index')->name('user.post.index');
+        Route::get('/create', 'create')->name('user.post.create');
+        Route::get('/show/{post}', 'show')->name('user.post.show');
+        Route::post('/', 'store')->name('user.post.store');
+        Route::get('/{post}/edit', 'edit')->name('user.post.edit');
+        Route::put('/{post}', 'update')->name('user.post.update');
+        Route::delete('/{post}', 'destroy')->name('user.post.destroy');
+
+    });
+
 });
 
 Auth::routes(['verify' => true, 'reset' => true]);
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
