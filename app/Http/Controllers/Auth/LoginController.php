@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use  Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+use App\Models\Character;
+use Illuminate\Support\Facades\Auth;
 
 
 class LoginController extends Controller
@@ -44,5 +48,35 @@ class LoginController extends Controller
     {
 
         return redirect()->route('user.main.index');
+    }
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('yandex')->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('yandex')->user();
+
+
+        $loginUser = User::where('email', $user->email)->first();
+
+        if (!$loginUser) {
+            $loginUser = User::create([
+                'name' => $user->nickname,
+                'email' => $user->email,
+                'password' => bcrypt('123456'),
+            ]);
+
+            Character::create([
+                'user_id' => $loginUser->id,
+                'name' => $loginUser->name,
+            ]);
+        }
+
+        Auth::login($loginUser, true);
+
+        return redirect('/home');
     }
 }

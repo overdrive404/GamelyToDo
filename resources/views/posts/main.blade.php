@@ -47,7 +47,6 @@
                     </div>
                 @endforeach
             </div>
-
             <!-- Пагинация -->
             <div class="d-flex justify-content-center">
                 {{ $posts->links('pagination::bootstrap-4') }}

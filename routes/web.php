@@ -9,6 +9,14 @@ use App\Http\Controllers\User\Boss\BossController;
 use App\Http\Controllers\User\Quest\QuestController;
 use App\Http\Controllers\User\Post\PostController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\LoginController;
+use SocialiteProviders\Manager\ServiceProvider;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +90,14 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth']], function () {
     });
 
 });
+
+
+Route::get('/auth/yandex', [LoginController::class, 'redirectToProvider'])->name('auth.yandex');
+Route::get('/auth/yandex/callback', [LoginController::class, 'handleProviderCallback']);
+
+
+
+
 
 Auth::routes(['verify' => true, 'reset' => true]);
 
